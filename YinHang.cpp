@@ -61,19 +61,19 @@ BOOL CYinHang::OnInitDialog()
 
 void CYinHang::InitCtrl()
 {
-	char vfj[260] = {0};
+	char vfj[MAX_PATH] = {0};
 	sprintf(vfj, "%s", ".\\vfj.ini");
 
-	char ip[20] = {0};
-	char port[10] = {0};
-	char com[3] = {0};
-	char netId[15] = {0};
-	char flag[2] = {0};
+	char ip[MAX_PATH] = {0};
+	char port[MAX_PATH] = {0};
+	char com[MAX_PATH] = {0};
+	char netId[MAX_PATH] = {0};
+	char flag[MAX_PATH] = {0};
 
 	//[VFJ]
-	::GetPrivateProfileString("server", "ip", "", ip, 20, vfj);
-	::GetPrivateProfileString("server", "port", "", port, 10, vfj);
-	::GetPrivateProfileString("server", "comm", "", com, 3, vfj);
+	::GetPrivateProfileString("server", "ip", "", ip, MAX_PATH, vfj);
+	::GetPrivateProfileString("server", "port", "", port, MAX_PATH, vfj);
+	::GetPrivateProfileString("server", "comm", "", com, MAX_PATH, vfj);
 	GetConf("net_id", netId);
 
 	m_ip1.SetWindowText(ip);
@@ -82,24 +82,24 @@ void CYinHang::InitCtrl()
 	m_edit6.SetWindowText(netId);
 
 	//[FTP]
-	::GetPrivateProfileString("ftp", "ip", "", ip, 20, vfj);
-	::GetPrivateProfileString("ftp", "port", "", port, 10, vfj);
+	::GetPrivateProfileString("ftp", "ip", "", ip, MAX_PATH, vfj);
+	::GetPrivateProfileString("ftp", "port", "", port, MAX_PATH, vfj);
 	m_ip2.SetWindowText(ip);
 	m_edit2.SetWindowText(port);
 
 	//[SOCKET]
-	::GetPrivateProfileString("socket", "ip", "", ip, 20, vfj);
-	::GetPrivateProfileString("socket", "port", "", port, 10, vfj);
+	::GetPrivateProfileString("socket", "ip", "", ip, MAX_PATH, vfj);
+	::GetPrivateProfileString("socket", "port", "", port, MAX_PATH, vfj);
 	m_ip3.SetWindowText(ip);
 	m_edit3.SetWindowText(port);
 
 	//[CHARGE]
-	::GetPrivateProfileString("charge", "ip", "", ip, 20, vfj);
-	::GetPrivateProfileString("charge", "port", "", port, 10, vfj);
+	::GetPrivateProfileString("charge", "ip", "", ip, MAX_PATH, vfj);
+	::GetPrivateProfileString("charge", "port", "", port, MAX_PATH, vfj);
 	m_ip4.SetWindowText(ip);
 	m_edit4.SetWindowText(port);
 
-	::GetPrivateProfileString("charge", "flag", "", flag, 2, vfj);
+	::GetPrivateProfileString("charge", "flag", "", flag, MAX_PATH, vfj);
 	if(strncmp(flag, "1", 1) == 0)
 	{
 		m_check1.SetCheck(1);
@@ -116,18 +116,18 @@ void CYinHang::InitCtrl()
 
 void CYinHang::OnRegBtn() 
 {
-	char vfj[260] = {0};
+	char vfj[MAX_PATH] = {0};
 	sprintf(vfj, "%s", ".\\vfj.ini");
 
-	char config[260] = {0};
+	char config[MAX_PATH] = {0};
 	sprintf(config, "%s", ".\\config.txt");
 
 	CString str;
 
-	char serv_Ip[20] = {0};
-	char serv_Port[10] = {0};
-	char net_Id[15] = {0};
-	char szTmp[200] = {0};
+	char serv_Ip[MAX_PATH] = {0};
+	char serv_Port[MAX_PATH] = {0};
+	char net_Id[MAX_PATH] = {0};
+	char szTmp[MAX_PATH] = {0};
 	
 	//vfj
 	m_ip1.GetWindowText(str);

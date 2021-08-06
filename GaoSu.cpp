@@ -53,8 +53,8 @@ BOOL CGaoSu::OnInitDialog()
 
 void CGaoSu::InitComb()
 {
-	char reg[100] = {0};
-	char vfj[100] = {0};
+	char reg[MAX_PATH] = {0};
+	char vfj[MAX_PATH] = {0};
 
 	if(_access("C:\\HpTmp\\reg.ini", 0) == 0)
 	{
@@ -67,18 +67,18 @@ void CGaoSu::InitComb()
 	
 	sprintf(vfj, "%s", ".\\vfj.ini");
 	
-	char net[100] = {0};
-	char ip1[20] = {0};
-	char ip2[20] = {0};
-	char com[5] = {0};
-	char port[10] = {0};
-	char netId[15] = {0};
+	char net[MAX_PATH] = {0};
+	char ip1[MAX_PATH] = {0};
+	char ip2[MAX_PATH] = {0};
+	char com[MAX_PATH] = {0};
+	char port[MAX_PATH] = {0};
+	char netId[MAX_PATH] = {0};
 
 	/***** SERVER *****/
 	int pos = -1;
 	m_comb1.ResetContent();
-	::GetPrivateProfileString("vfj", "Nets", "", net, 100, reg);
-	::GetPrivateProfileString("server", "ip", "", ip1, 20, vfj);
+	::GetPrivateProfileString("vfj", "Nets", "", net, MAX_PATH, reg);
+	::GetPrivateProfileString("server", "ip", "", ip1, MAX_PATH, vfj);
 
 	char *p = strtok(net, "|");
 	int i = 0;
@@ -86,7 +86,7 @@ void CGaoSu::InitComb()
 	{
 		m_comb1.InsertString(i, p);
 
-		::GetPrivateProfileString("vfj", p, "", ip2, 20, reg);
+		::GetPrivateProfileString("vfj", p, "", ip2, MAX_PATH, reg);
 		if(strcmp(ip1, ip2) == 0)
 		{	
 			pos = i;
@@ -97,10 +97,10 @@ void CGaoSu::InitComb()
 	}
 	m_comb1.SetCurSel(pos);
 
-	::GetPrivateProfileString("server", "comm", "", com, 5, vfj);
+	::GetPrivateProfileString("server", "comm", "", com, MAX_PATH, vfj);
 	GetDlgItem(IDC_EDIT2)->SetWindowText(com);
 
-	::GetPrivateProfileString("server", "port", "", port, 7, vfj);
+	::GetPrivateProfileString("server", "port", "", port, MAX_PATH, vfj);
 	GetDlgItem(IDC_EDIT3)->SetWindowText(port);
 
 	GetConf("net_id", netId);
@@ -110,8 +110,8 @@ void CGaoSu::InitComb()
 	//ip
 	pos = -1;
 	m_comb2.ResetContent();
-	::GetPrivateProfileString("ftp", "Nets", "", net, 100, reg);
-	::GetPrivateProfileString("ftp", "ip", "", ip1, 20, vfj);
+	::GetPrivateProfileString("ftp", "Nets", "", net, MAX_PATH, reg);
+	::GetPrivateProfileString("ftp", "ip", "", ip1, MAX_PATH, vfj);
 
 	p = strtok(net, "|");
 	i = 0;
@@ -119,7 +119,7 @@ void CGaoSu::InitComb()
 	{
 		m_comb2.InsertString(i, p);
 
-		::GetPrivateProfileString("ftp", p, "", ip2, 20, reg);
+		::GetPrivateProfileString("ftp", p, "", ip2, MAX_PATH, reg);
 		if(strcmp(ip1, ip2) == 0)
 		{	
 			pos = i;
@@ -131,15 +131,15 @@ void CGaoSu::InitComb()
 	m_comb2.SetCurSel(pos);
 
 	//port
-	char fPort[10] = {0};
-	::GetPrivateProfileString("ftp", "port", "", fPort, 10, vfj);
+	char fPort[MAX_PATH] = {0};
+	::GetPrivateProfileString("ftp", "port", "", fPort, MAX_PATH, vfj);
 	GetDlgItem(IDC_EDIT7)->SetWindowText(fPort);
 
 	/***** SOCKET *****/
 	pos = -1;
 	m_comb3.ResetContent();
-	::GetPrivateProfileString("socket", "Nets", "", net, 100, reg);
-	::GetPrivateProfileString("socket", "ip", "", ip1, 20, vfj);
+	::GetPrivateProfileString("socket", "Nets", "", net, MAX_PATH, reg);
+	::GetPrivateProfileString("socket", "ip", "", ip1, MAX_PATH, vfj);
 
 	p = strtok(net, "|");
 	i = 0;
@@ -147,7 +147,7 @@ void CGaoSu::InitComb()
 	{
 		m_comb3.InsertString(i, p);
 
-		::GetPrivateProfileString("socket", p, "", ip2, 20, reg);
+		::GetPrivateProfileString("socket", p, "", ip2, MAX_PATH, reg);
 		if(strcmp(ip1, ip2) == 0)
 		{	
 			pos = i;
@@ -159,8 +159,8 @@ void CGaoSu::InitComb()
 	m_comb3.SetCurSel(pos);
 
 	//port
-	char sPort[10] = {0};
-	::GetPrivateProfileString("socket", "port", "", sPort, 10, vfj);
+	char sPort[MAX_PATH] = {0};
+	::GetPrivateProfileString("socket", "port", "", sPort, MAX_PATH, vfj);
 	GetDlgItem(IDC_EDIT8)->SetWindowText(sPort);
 }
 
@@ -169,22 +169,22 @@ void CGaoSu::InitComb()
 
 void CGaoSu::OnRegBtn() 
 {
-	char ip[20] = {0};
-	char szTmp[200] = {0};
-	char vfj[100] = {0};
-	char reg[100] = {0};
+	char ip[MAX_PATH] = {0};
+	char szTmp[MAX_PATH] = {0};
+	char vfj[MAX_PATH] = {0};
+	char reg[MAX_PATH] = {0};
 
 	sprintf(vfj, "%s", ".\\vfj.ini");
 	sprintf(reg, "%s", ".\\reg.ini");
 
-	char serv_Ip[20] = {0};
-	char serv_Port[10] = {0};
-	char net_Id[15] = {0};
+	char serv_Ip[MAX_PATH] = {0};
+	char serv_Port[MAX_PATH] = {0};
+	char net_Id[MAX_PATH] = {0};
 
 	//server
 	CString str;
 	m_comb1.GetWindowText(str);
-	::GetPrivateProfileString("vfj", str.GetBuffer(0), "", ip, 20, reg);
+	::GetPrivateProfileString("vfj", str.GetBuffer(0), "", ip, MAX_PATH, reg);
 	::WritePrivateProfileString("server", "ip", ip, vfj);
 	sprintf(serv_Ip, "%s", ip);
 
@@ -203,7 +203,7 @@ void CGaoSu::OnRegBtn()
 
 	//ftp
 	m_comb2.GetWindowText(str);
-	::GetPrivateProfileString("ftp", str.GetBuffer(0), "", ip, 20, reg);
+	::GetPrivateProfileString("ftp", str.GetBuffer(0), "", ip, MAX_PATH, reg);
 	::WritePrivateProfileString("ftp", "ip", ip, vfj);
 
 	GetDlgItem(IDC_EDIT7)->GetWindowText(str);
@@ -211,7 +211,7 @@ void CGaoSu::OnRegBtn()
 
 	//socket
 	m_comb3.GetWindowText(str);
-	::GetPrivateProfileString("socket", str.GetBuffer(0), "", ip, 20, reg);
+	::GetPrivateProfileString("socket", str.GetBuffer(0), "", ip, MAX_PATH, reg);
 	::WritePrivateProfileString("socket", "ip", ip, vfj);
 
 	GetDlgItem(IDC_EDIT8)->GetWindowText(str);
