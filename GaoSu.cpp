@@ -62,10 +62,10 @@ void CGaoSu::InitComb()
 	}
 	else
 	{
-		sprintf(reg, "%s", ".\\reg.ini");
+		sprintf(reg, "%s\\reg.ini", g_appPath);
 	}
 	
-	sprintf(vfj, "%s", ".\\vfj.ini");
+	sprintf(vfj, "%s\\vfj.ini", g_appPath);
 	
 	char net[MAX_PATH] = {0};
 	char ip1[MAX_PATH] = {0};
@@ -174,8 +174,9 @@ void CGaoSu::OnRegBtn()
 	char vfj[MAX_PATH] = {0};
 	char reg[MAX_PATH] = {0};
 
-	sprintf(vfj, "%s", ".\\vfj.ini");
-	sprintf(reg, "%s", ".\\reg.ini");
+	sprintf(vfj, "%s\\vfj.ini", g_appPath);
+
+	sprintf(reg, "%s\\reg.ini", g_appPath);
 
 	char serv_Ip[MAX_PATH] = {0};
 	char serv_Port[MAX_PATH] = {0};

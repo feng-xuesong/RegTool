@@ -11,6 +11,8 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+char g_appPath[MAX_PATH] = { 0 };
+
 /////////////////////////////////////////////////////////////////////////////
 // CRegToolApp
 
@@ -29,6 +31,9 @@ CRegToolApp::CRegToolApp()
 {
 	// TODO: add construction code here,
 	// Place all significant initialization in InitInstance
+	::GetModuleFileNameA(NULL, g_appPath, MAX_PATH);
+	char *p = strrchr(g_appPath, '\\');
+	strcpy(p, "");
 }
 
 /////////////////////////////////////////////////////////////////////////////

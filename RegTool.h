@@ -14,6 +14,8 @@
 
 #include "resource.h"		// main symbols
 
+extern char g_appPath[MAX_PATH];
+
 /////////////////////////////////////////////////////////////////////////////
 // CRegToolApp:
 // See RegTool.cpp for the implementation of this class
